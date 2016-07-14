@@ -1,0 +1,25 @@
+{% if tweet %}
+    <h4>{{tweet.user}}</h4>
+    <p>{{tweet.text}}</p>
+
+    {% if replies %}
+      <p>{{replies|length}} replies:</p>
+      <ul>
+      {% for reply in replies %}
+        <li><a href='/feed/tweet/{{reply.pk}}'>{{reply}}</a></li>
+      {% endfor %}
+      </ul>
+    {% endif %}
+    
+    {% if retweets %}
+      <p>{{retweets|length}} retweets:</p>
+      <ul>
+      {% for retweet in retweets%}
+        <li><a href='/feed/tweet/{{retweet.pk}}'>{{retweet}}</a></li>
+      {% endfor %}
+      </ul>
+    {% endif %}
+
+{% else %}
+    <p>Tweet unavailable.</p>
+{% endif %}
